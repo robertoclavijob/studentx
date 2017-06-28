@@ -9,34 +9,39 @@ import java.util.List;
 /**
  * Database interaction
  */
-public interface StudentDAO {
+public abstract class StudentDAO {
+    /**
+     * All persisted students
+     */
+    List<Student> storedStudents;
+
     /**
      * Parse a CSV file and import all students
      *
      * @param csvFile The external resource
      */
-    public void importStudentsFromCSV(File csvFile);
+    public abstract void importStudentsFromCSV(File csvFile);
 
     /**
      * Create a given student
      *
      * @param student
      */
-    public void create(Student student);
+    public abstract void create(Student student);
 
     /**
      * Delete a given student
      *
      * @param student
      */
-    public void delete(Student student);
+    public abstract void delete(Student student);
 
     /**
      * Look for all students filtering by name sorted alphabetically
      *
      * @return
      */
-    public List<Student> findByName();
+    public abstract List<Student> findByName();
 
     /**
      * Look for students filtering by type, sorted by date most recent to least recent
@@ -44,7 +49,7 @@ public interface StudentDAO {
      * @param type
      * @return
      */
-    public List<Student> findByType(String type);
+    public abstract List<Student> findByType(String type);
 
     /**
      * Look for students filtering by gender and type, sorted by date most recent to least recent
@@ -52,5 +57,17 @@ public interface StudentDAO {
      * @param type
      * @return
      */
-    public List<Student> findByGenderAndType(Gender gender, String type);
+    public abstract List<Student> findByGenderAndType(Gender gender, String type);
+
+    /**
+     * Get all students
+     *
+     * @return
+     */
+    public abstract List<Student> getAll();
+
+    /**
+     * Remove all students
+     */
+    public abstract void removeAll();
 }

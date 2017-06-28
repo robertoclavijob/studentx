@@ -11,10 +11,19 @@ public class Student {
     /**
      * This "type" field can have multiple types, so it is not an enum
      */
+    private Integer studentId;
     private String type;
     private String name;
     private Gender gender;
     private Date lastUpdate;
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
 
     public String getType() {
         return type;
