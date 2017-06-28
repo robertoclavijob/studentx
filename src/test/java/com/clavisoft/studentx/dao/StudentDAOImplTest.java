@@ -1,11 +1,13 @@
 package com.clavisoft.studentx.dao;
 
 import com.clavisoft.studentx.constant.Gender;
+import com.clavisoft.studentx.exception.InvalidCSVException;
 import com.clavisoft.studentx.model.Student;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -29,7 +31,7 @@ public class StudentDAOImplTest {
         student.setGender(Gender.FEMALE);
         student.setLastUpdate(new Date());
         studentDAO.create(student);
-        assertEquals(studentDAO.getAll().size(), 1);
+        assertEquals(1, studentDAO.getAll().size());
     }
 
     @Test
@@ -42,7 +44,14 @@ public class StudentDAOImplTest {
         student.setLastUpdate(new Date());
         studentDAO.create(student);
         studentDAO.delete(student);
-        assertEquals(studentDAO.getAll().size(), 0);
+        assertEquals(0, studentDAO.getAll().size());
+    }
+
+    @Test
+    public void testImportStudentsFromCSV() throws InvalidCSVException{
+        File csvFile = new File(getClass().getResource("/input.csv").getFile());
+        studentDAO.importStudentsFromCSV(csvFile);
+        assertEquals(2, studentDAO.getAll().size());
     }
 
     @After
