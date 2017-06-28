@@ -1,6 +1,7 @@
 package com.clavisoft.studentx.dao;
 
 import com.clavisoft.studentx.constant.Gender;
+import com.clavisoft.studentx.exception.InvalidCSVException;
 import com.clavisoft.studentx.model.Student;
 
 import java.io.File;
@@ -17,10 +18,13 @@ public abstract class StudentDAO {
 
     /**
      * Parse a CSV file and import all students
+     * Each CSV row should be defined as "Kinder,Leia,F,20151231145934"
+     * The “Timestamp” format is: “<year><month><day><hour><minute><second>”, e.g.:
+     * The representation for December 31st, 2013 14:59:34 is 20131231145934.
      *
      * @param csvFile The external resource
      */
-    public abstract void importStudentsFromCSV(File csvFile);
+    public abstract void importStudentsFromCSV(File csvFile) throws InvalidCSVException;
 
     /**
      * Create a given student
