@@ -5,8 +5,11 @@ A command line application to load and filter Students
 ## Requirements
 
 Java 8
+
 Maven
-A CSV file with the students information
+
+A CSV file with the students information `[TYPE, NAME, GENDER, LAST_UPDATED_DATE]`(e.g.:`Kinder,Leia,F,20151231145934`)
+
 
 ## Build process
 
