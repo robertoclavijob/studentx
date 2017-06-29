@@ -1,5 +1,5 @@
 # studentx
-Manage Students
+
 A command line application to load and filter Students
 
 ## Requirements
