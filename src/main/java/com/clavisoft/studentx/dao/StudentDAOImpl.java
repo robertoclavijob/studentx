@@ -9,17 +9,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
  * Implement Student DAO methods
  */
 public class StudentDAOImpl extends StudentDAO {
-    private final String DATE_FORMAT = "yMdHms";
+    private final String DATE_FORMAT = "yyyyMMddHHmmss";
+
     private final String SEPARATOR = ",";
 
     public StudentDAOImpl() {
@@ -50,7 +49,6 @@ public class StudentDAOImpl extends StudentDAO {
             int i = 1;
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                System.out.println(line);
                 String[] rowValues = line.split(this.SEPARATOR);
                 // THE INDEX NUMBER IS HARD-CODED IN THE NEXT WAY
                 // INDEX DETAIL:
@@ -70,9 +68,6 @@ public class StudentDAOImpl extends StudentDAO {
                 student.setGender(Gender.fromString(rowValues[2]));
                 student.setLastUpdate(this.parseStringDateFormat(rowValues[3]));
                 student.setStudentId(i++);
-
-                System.out.println(String.format("Student info: type[%s], name[%s], lastUpdate[%s], studentId[%d]",
-                        student.getType(), student.getName(), student.getLastUpdate(), student.getStudentId()));
                 this.create(student);
             }
             scanner.close();
@@ -97,18 +92,31 @@ public class StudentDAOImpl extends StudentDAO {
     }
 
     @Override
-    public List<Student> findByName() {
-        return null;
+    public List<Student> findByName(String name) {
+        List<Student> filteredStudents = this.storedStudents.stream()
+                .filter(student -> name.equals(student.getName()))
+                .sorted(Comparator.comparing(Student::getName))
+                .collect(Collectors.toList());
+        return filteredStudents;
     }
 
     @Override
     public List<Student> findByType(String type) {
-        return null;
+        List<Student> filteredStudents = this.storedStudents.stream()
+                .filter(student -> type.equals(student.getType()))
+                .sorted(Comparator.comparing(Student::getLastUpdate).reversed())
+                .collect(Collectors.toList());
+        return filteredStudents;
     }
 
     @Override
     public List<Student> findByGenderAndType(Gender gender, String type) {
-        return null;
+        List<Student> filteredStudents = this.storedStudents.stream()
+                .filter(student -> gender.equals(student.getGender()))
+                .filter(student -> type.equals(student.getType()))
+                .sorted(Comparator.comparing(Student::getLastUpdate).reversed())
+                .collect(Collectors.toList());
+        return filteredStudents;
     }
 
     @Override

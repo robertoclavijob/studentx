@@ -51,7 +51,31 @@ public class StudentDAOImplTest {
     public void testImportStudentsFromCSV() throws InvalidCSVException{
         File csvFile = new File(getClass().getResource("/input.csv").getFile());
         studentDAO.importStudentsFromCSV(csvFile);
-        assertEquals(2, studentDAO.getAll().size());
+        assertEquals(10, studentDAO.getAll().size());
+    }
+
+    @Test
+    public void testFindByName() throws InvalidCSVException {
+        String NAME_TO_FIND = "Leia";
+        File csvFile = new File(getClass().getResource("/input.csv").getFile());
+        studentDAO.importStudentsFromCSV(csvFile);
+        assertEquals(1, studentDAO.findByName(NAME_TO_FIND).size());
+    }
+
+    @Test
+    public void testFindByType() throws InvalidCSVException {
+        String TYPE_TO_FIND = "Kinder";
+        File csvFile = new File(getClass().getResource("/input.csv").getFile());
+        studentDAO.importStudentsFromCSV(csvFile);
+        assertEquals(5, studentDAO.findByType(TYPE_TO_FIND).size());
+    }
+
+    @Test
+    public void testFindByGenderAndType() throws InvalidCSVException {
+        String TYPE_TO_FIND = "Kinder";
+        File csvFile = new File(getClass().getResource("/input.csv").getFile());
+        studentDAO.importStudentsFromCSV(csvFile);
+        assertEquals(2, studentDAO.findByGenderAndType(Gender.FEMALE, TYPE_TO_FIND).size());
     }
 
     @After
