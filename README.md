@@ -1,4 +1,4 @@
-# studentx
+# StudentX
 
 A command line application to load and filter Students
 
