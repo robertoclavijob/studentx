@@ -42,10 +42,10 @@ public abstract class StudentDAO {
 
     /**
      * Look for all students filtering by name sorted alphabetically
-     *
+     * @param name
      * @return
      */
-    public abstract List<Student> findByName();
+    public abstract List<Student> findByName(String name);
 
     /**
      * Look for students filtering by type, sorted by date most recent to least recent
