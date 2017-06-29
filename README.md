@@ -36,7 +36,7 @@ Run `java -jar studentx-{version}.jar [CSV_PATH] type=[STUDENT_TYPE] gender=[M|F
 
 The gender parameter support only `M`(Male) and `F` (Female)
 
-If you just want to start the spring application it will use the embedded tomcat and 8080 port
+If you just want to start the Spring application it will use the embedded tomcat and 8080 port
 Run `java -jar studentx-{version}.jar`
 
 ## Notes
