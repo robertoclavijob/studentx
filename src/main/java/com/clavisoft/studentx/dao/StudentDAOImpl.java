@@ -94,7 +94,7 @@ public class StudentDAOImpl extends StudentDAO {
     @Override
     public List<Student> findByName(String name) {
         List<Student> filteredStudents = this.storedStudents.stream()
-                .filter(student -> name.equals(student.getName()))
+                .filter(student -> name.equalsIgnoreCase(student.getName()))
                 .sorted(Comparator.comparing(Student::getName))
                 .collect(Collectors.toList());
         return filteredStudents;
@@ -103,7 +103,7 @@ public class StudentDAOImpl extends StudentDAO {
     @Override
     public List<Student> findByType(String type) {
         List<Student> filteredStudents = this.storedStudents.stream()
-                .filter(student -> type.equals(student.getType()))
+                .filter(student -> type.equalsIgnoreCase(student.getType()))
                 .sorted(Comparator.comparing(Student::getLastUpdate).reversed())
                 .collect(Collectors.toList());
         return filteredStudents;
@@ -113,7 +113,7 @@ public class StudentDAOImpl extends StudentDAO {
     public List<Student> findByGenderAndType(Gender gender, String type) {
         List<Student> filteredStudents = this.storedStudents.stream()
                 .filter(student -> gender.equals(student.getGender()))
-                .filter(student -> type.equals(student.getType()))
+                .filter(student -> type.equalsIgnoreCase(student.getType()))
                 .sorted(Comparator.comparing(Student::getLastUpdate).reversed())
                 .collect(Collectors.toList());
         return filteredStudents;

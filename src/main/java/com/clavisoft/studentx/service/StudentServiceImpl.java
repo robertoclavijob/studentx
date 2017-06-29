@@ -6,6 +6,7 @@ import com.clavisoft.studentx.dao.StudentDAO;
 import com.clavisoft.studentx.dao.StudentDAOImpl;
 import com.clavisoft.studentx.exception.InvalidCSVException;
 import com.clavisoft.studentx.model.Student;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Student service implementation
  */
+@Service
 public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> filter(Student student) {

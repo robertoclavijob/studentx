@@ -1,7 +1,24 @@
 package com.clavisoft.studentx.cli;
 
 /**
- * Created by roberto_clavijo on 28-06-17.
+ * Handle all the logic of CLI
  */
-public class StudentCLIImpl1 {
+public abstract class StudentCLI {
+    /**
+     * The arguments
+     */
+    protected String[] args;
+
+    /**
+     * Validate arguments (e.g.name=)
+     *
+     * @return
+     */
+    protected abstract String validateParameters();
+
+    /**
+     * Filter values based on the request
+     * @return The response
+     */
+    public abstract String filter();
 }
