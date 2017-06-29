@@ -49,7 +49,6 @@ public class StudentDAOImpl extends StudentDAO {
             int i = 1;
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                System.out.println(line);
                 String[] rowValues = line.split(this.SEPARATOR);
                 // THE INDEX NUMBER IS HARD-CODED IN THE NEXT WAY
                 // INDEX DETAIL:
@@ -69,9 +68,6 @@ public class StudentDAOImpl extends StudentDAO {
                 student.setGender(Gender.fromString(rowValues[2]));
                 student.setLastUpdate(this.parseStringDateFormat(rowValues[3]));
                 student.setStudentId(i++);
-
-                System.out.println(String.format("Student info: type[%s], name[%s], lastUpdate[%s], studentId[%d]",
-                        student.getType(), student.getName(), student.getLastUpdate(), student.getStudentId()));
                 this.create(student);
             }
             scanner.close();
